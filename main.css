@@ -1,0 +1,121 @@
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Project1.css
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Created: 10/09/2024
+    Author: Cristian Aranda
+    Modified:
+    Comments: This will be used to manage the styles of Project1.html
+    */
+    
+    
+    /*  This makes sure that the padding and border are included in the total width and height of the elements */
+    * {
+      box-sizing: border-box; /* allows for padding and borders to fit within the width */
+      /* normalizing webpage */
+      margin: 0px;
+      padding: 0px;
+    }
+    
+    html {
+      color: balck !important;
+      letter-spacing: 1px;
+      /*text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      /*font-size:64px; */
+      font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight:100;
+      font-size: 2vw;
+    }
+    
+    h2 {
+      font-size: 3.5vw;
+      font-weight: 250;
+    }
+    
+    button, #select-box, .status {
+      color: balck !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      width: 80px;
+      /*background: rgba(0, 151, 19, 0.1);*/
+      background-color: transparent;
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+      border: 1px solid #999;
+      transition: all 0.4s ease 0s;
+      margin-bottom: 16px;
+    }
+    
+    button:hover, #select-box:hover {
+      background: #f54747;
+      letter-spacing: 1px;
+      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+      border: none;
+      transition: all 1.0s ease 0s;
+    }
+    
+    .status {
+      width: auto;
+      font-size: 1.5vw;
+      padding: 9px;
+    }
+    
+    #select-box {
+      width: 167px;
+      text-align: center;
+    }
+    
+    
+    /* Row 1 and 2 */
+    .top-row, .middle-row {
+      width: 100%;
+    }
+    
+    .top-row, .top-left, .top-right {
+      min-height: 80px; /* adjusts height of div */
+      line-height: 70px; /* adjusts vertical align, should be same as min-height */
+    }
+    
+    .top-left, .middle-left {
+      width: 20%;
+      padding-left: 2%;
+      float: left; /* used by child div to be on left side */
+    }
+    
+    .top-right, .middle-right {
+      width: 80%;
+      float: right;
+      text-align: center;/* aligns text inside div */
+    }
+    
+    .middle-row, .middle-left, .middle-right {
+      min-height: 100px;
+      line-height: 20px; 
+    }
+    
+    .middle-right {
+      text-align: left;
+    }
+    
+    /* Row 3 */
+    /* pictures section */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 1%;
+      padding-right: 1%;
+      float: right; /* used by child div to be on right side  */
+    }
+    
+    .pictures {
+      width: 30%;
+      border-radius: 25px;
+      height: 500px;
+      box-shadow: 2px 2px 5px #333;
+      transition: all 0.9s ease 2s;
+    }
