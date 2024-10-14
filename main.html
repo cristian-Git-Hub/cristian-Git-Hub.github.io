@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name=”viewport” content=”width=device-width, initial-scale=1″>
+  <title>Next Project - Fall '24 - WebPage</title>
+  <style>
+  
+  /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Project1.css
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    Created: 10/09/2024
+    Author: Cristian Aranda
+    Modified:
+    Comments: This will be used to manage the styles of Project1.html
+    */
+    
+    
+    /*  This makes sure that the padding and border are included in the total width and height of the elements */
+    * {
+      box-sizing: border-box; /* allows for padding and borders to fit within the width */
+      /* normalizing webpage */
+      margin: 0px;
+      padding: 0px;
+    }
+    
+    html {
+      color: balck !important;
+      letter-spacing: 1px;
+      /*text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      /*font-size:64px; */
+      font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight:100;
+      font-size: 2vw;
+    }
+    
+    h2 {
+      font-size: 3.5vw;
+      font-weight: 250;
+    }
+    
+    button, #select-box, .status {
+      color: balck !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      width: 80px;
+      /*background: rgba(0, 151, 19, 0.1);*/
+      background-color: transparent;
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+      border: 1px solid #999;
+      transition: all 0.4s ease 0s;
+      margin-bottom: 16px;
+    }
+    
+    button:hover, #select-box:hover {
+      background: #f54747;
+      letter-spacing: 1px;
+      -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+      box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+      border: none;
+      transition: all 1.0s ease 0s;
+    }
+    
+    .status {
+      width: auto;
+      font-size: 1.5vw;
+      padding: 9px;
+    }
+    
+    #select-box {
+      width: 167px;
+      text-align: center;
+    }
+    
+    
+    /* Row 1 and 2 */
+    .top-row, .middle-row {
+      width: 100%;
+    }
+    
+    .top-row, .top-left, .top-right {
+      min-height: 80px; /* adjusts height of div */
+      line-height: 70px; /* adjusts vertical align, should be same as min-height */
+    }
+    
+    .top-left, .middle-left {
+      width: 20%;
+      padding-left: 2%;
+      float: left; /* used by child div to be on left side */
+    }
+    
+    .top-right, .middle-right {
+      width: 80%;
+      float: right;
+      text-align: center;/* aligns text inside div */
+    }
+    
+    .middle-row, .middle-left, .middle-right {
+      min-height: 100px;
+      line-height: 20px; 
+    }
+    
+    .middle-right {
+      text-align: left;
+    }
+    
+    /* Row 3 */
+    /* pictures section */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 1%;
+      padding-right: 1%;
+      float: right; /* used by child div to be on right side  */
+    }
+    
+    .pictures {
+      width: 30%;
+      border-radius: 25px;
+      height: 500px;
+      box-shadow: 2px 2px 5px #333;
+      transition: all 0.9s ease 2s;
+    }
+    
+    
+    
+    </style>
+</head>
+<body>
+  <div class="top-row">
+    <div class="top-left">
+      <button id="start"> Play </button>
+      <button id="stop"> Pause </button>
+    </div>
+    <div class="top-right">
+      <div class="title"></div>
+    </div>
+  </div>
+  <div class="middle-row">
+    <div class="middle-left">
+      <div>
+        <select id="select-box">
+          <option value="">Interval</option>
+          <option value="3"> 3 </option>
+          <option value="6"> 6 </option>
+          <option value="9"> 9 </option>
+        </select>
+      </div>
+    </div>
+    <div class="middle-right">
+      <div class="info">
+      <label class="status"></label>
+    </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="pictures"></div>
+    <div class="pictures"></div>
+    <div class="pictures"></div>
+  </div>
+
+<script>
+    // gobals, gather all of the DOM elements we will be working with.
+const title = document.querySelector(".title");
+const pictures = document.querySelectorAll(".pictures");
+const stop = document.getElementById("stop");
+const start = document.getElementById("start");
+const statusbar = document.querySelector(".status");
+var count = 0;
+let interval = 6000;
+let intervalId // important: used to trac the correct setInterval method. 
+
+// create an h2 element for the titile
+h2 = document.createElement("h2");
+h2.innerText = "Next Chapter Fall/Winter '24 - Project";
+title.appendChild(h2); // append title info
+
+
+
+// FUNCTIONS
+
+// start function. 
+function startIntervalTime(curTime) {
+  console.log(curTime)
+  statusbar.innerText = "Changing pictures every " + curTime / 1000 + " seconds";
+  return setInterval(myCycle, curTime) 
+}
+
+// stop funciton
+function stopIntervalTime(curId) {
+  statusbar.innerText = "Picture interval Paused";
+  clearInterval(curId)
+}
+
+// reset function
+function resetIntervalTime(curId,curTime) {
+  console.log(curTime)
+  stopIntervalTime(curId);
+  statusbar.innerText = "Changing pictures every " + curTime / 1000 + " seconds";
+  return setInterval(myCycle, curTime)
+}
+
+// main function
+function myCycle() {
+  // use the DOM objects to display the information.
+  let initMax = 33;
+  pictures.forEach(function(pic, index) {
+    let eleWidth = pic.offsetWidth;
+    let eleHeight = pic.offsetHeight;
+    console.log("offsetWidth: " + eleWidth)
+    console.log("offsetHeight: " + eleHeight)
+    // create random number
+    var rand = Math.floor(Math.random() * (initMax - (initMax - 32)) + (initMax - 32));
+    //create url - width & height
+    let imgURL = 'https://picsum.photos/'+eleWidth+'/'+eleHeight+'?random='+rand;
+    pic.style.backgroundImage = "url(" + imgURL + ")";
+    initMax += 33;
+  });
+}
+
+// LISTENERS
+
+// on page load listener
+window.addEventListener("load",
+  e => {
+    myCycle(); // load page with pictures 
+    intervalId = startIntervalTime(interval);
+    console.log("on load intervalId: " + intervalId)
+  },
+);
+
+// stop button listener.
+stop.addEventListener("click", 
+  e => {
+    stopIntervalTime(intervalId)
+  });
+
+// start button listener
+start.addEventListener("click", e => {
+  intervalId = startIntervalTime(interval);
+});
+
+// select box listener.
+document.getElementById("select-box").addEventListener("change", function() {
+  let seconds = this.value // selection value from the select box.
+  interval = seconds * 1000;
+  intervalId = resetIntervalTime(intervalId, interval)
+});
+
+</script>
+
+</body>
+
+</html>
