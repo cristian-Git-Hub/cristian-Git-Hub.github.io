@@ -45,8 +45,8 @@ function myCycle() {
   pictures.forEach(function(pic, index) {
     let eleWidth = pic.offsetWidth;
     let eleHeight = pic.offsetHeight;
-    console.log("offsetWidth: " + eleWidth)
-    console.log("offsetHeight: " + eleHeight)
+    //console.log("offsetWidth: " + eleWidth)
+    //console.log("offsetHeight: " + eleHeight)
     // create random number
     var rand = Math.floor(Math.random() * (initMax - (initMax - 32)) + (initMax - 32));
     //create url - width & height
