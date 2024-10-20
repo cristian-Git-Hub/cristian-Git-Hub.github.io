@@ -31,6 +31,7 @@
     h2 {
       font-size: 3.5vw;
       font-weight: 250;
+        text-align: left;
     }
     
     button, #select-box, .status {
